@@ -1,0 +1,19 @@
+name: Base Pipeline
+run-name: ${{ github.actor }} is active here
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Deploying:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "generating in ${{ runner.os }}"
+      - run: echo "runnig by ${{ github.actor }}"
+      
+      - name: Install SSHPass
+        run: sudo apt install sshpass
+      
+      - name: Hello
+        run: echo hello world
