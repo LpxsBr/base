@@ -32,19 +32,19 @@ export default function Start() {
             type: 'string'
         },
         {
-            title: 'teste4',
+            title: 'AAAAAAAAAAAA',
             name: 'teste4',
             default: '1',
             type: 'string'
         },
         {
-            title: 'teste5',
+            title: 'AAAAAAAAA',
             name: 'teste5',
             default: '1',
             type: 'string'
         },
         {
-            title: 'teste6',
+            title: 'AAAAAAAA',
             name: 'teste6',
             default: '1',
             type: 'string'
@@ -52,7 +52,7 @@ export default function Start() {
       ]
 
   return (
-    <div style={{ height: "100%", width: "100vw" }}>
+    <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start" }}>
         <FormComponent
             submit_message="aa"
             setData={setTeste}
