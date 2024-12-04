@@ -1,6 +1,7 @@
 'use client'
 
 import { Dispatch, ReactNode, SetStateAction, useEffect, useRef, useState } from "react";
+import s from './style.module.css'
 
 type Field = {
     type: string,
@@ -34,12 +35,12 @@ export default function FormComponent({fields, setData, submit_message = 'submit
         fields.forEach((e) => {
             setForm((prev) => ({ ...prev, [e.name]: {
                 default: e.default,
+                title: e.title,
                 type: e.type,
                 value: null
             }}))
         })
-
-        console.log({formData})
+        
     }, [fields])
     
     const handleChange = (event: any) => {
@@ -57,22 +58,26 @@ export default function FormComponent({fields, setData, submit_message = 'submit
     
     return(
         <form ref={formRef}>
-            <div style={{display: "flex", flexDirection: "row", flexWrap: 'wrap'}}>
-                {
-                    Object.keys(formData).map((e, key) => {
-                        return (
-                            <div key={key} id={''+e+key} style={{display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start"}}>
-                                <label htmlFor={''+e+'label'+key}>{formData[e].title}</label>
-                                <input name={e} onChange={handleChange} id={''+e+'label'+key} value={formData[e].value ?? ''} />
-                            </div>
-                        )
-                    })
-                }
+            <div style={{display: "flex", flexDirection: "row", flexWrap: 'wrap', justifyContent: "center", gap: 22, width: "100%", maxWidth: '795px'}} className={s._form_wrp}>
+                <div style={{display: "flex", flexDirection: "row", flexWrap: 'wrap', justifyContent: "center", gap: 22, width: "100%"}} className={s.form}>
+                    {
+                        Object.keys(formData).map((e, key) => {
+                            return (
+                                <div key={key} id={''+e+key} style={{display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start", maxWidth: 350, minWidth: 250}}>
+                                    <label className={s.input_label} htmlFor={''+e+'label'+key}>{formData[e].title}</label>
+                                    <input name={e} onChange={handleChange} id={''+e+'label'+key} value={formData[e].value ?? ''} className={s.input_animated} />
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+                
+                <div className={s.controll}>
+                    <button style={{maxWidth: 350, minWidth: 250, height: 32}} onClick={handleSubmit}>{submit_message}</button>
+                    {add_elements}
+                </div>
             </div>
-            <div>
-                <button onClick={handleSubmit}>{submit_message}</button>
-                {add_elements}
-            </div>
+
         </form>
     )
 

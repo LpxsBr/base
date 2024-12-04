@@ -1,0 +1,24 @@
+.input_animated{
+    width: 100%;
+    height: 32px;
+    padding: 0 10px;
+}
+
+.input_animated:focus{
+    & + .input_label{
+        color: green;
+    }
+}
+
+@media (min-width: 950px) {
+    .form{
+        justify-content: flex-start !important;
+    }    
+
+    .controll{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 100%;
+    }
+}
