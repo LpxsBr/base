@@ -14,47 +14,53 @@ export default function Start() {
 
     const field = [
         {
-            title: 'teste1',
+            title: 'Campo 1',
             name: 'teste1',
             default: 1,
-            type: 'number'
+            type: 'number',
+            required: true,
         },
         {
-            title: 'teste2',
+            title: 'Campo 2',
             name: 'teste2',
             default: '1',
-            type: 'string'
+            type: 'string',
+            required: true,
         },
         {
-            title: 'teste3',
+            title: 'Campo 3',
             name: 'teste3',
             default: '1',
-            type: 'string'
+            type: 'string',
+            required: true,
         },
         {
-            title: 'AAAAAAAAAAAA',
+            title: 'Campo 4',
             name: 'teste4',
             default: '1',
-            type: 'string'
+            type: 'string',
+            required: false,
         },
         {
-            title: 'AAAAAAAAA',
+            title: 'Campo 5',
             name: 'teste5',
             default: '1',
-            type: 'string'
+            type: 'string',
+            required: false,
         },
         {
-            title: 'AAAAAAAA',
+            title: 'Campo 6',
             name: 'teste6',
             default: '1',
-            type: 'string'
+            type: 'string',
+            required: false,
         }
       ]
 
   return (
     <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start" }}>
         <FormComponent
-            submit_message="aa"
+            submit_message="Enviar"
             setData={setTeste}
             fields={field}
         />
