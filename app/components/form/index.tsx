@@ -7,7 +7,8 @@ type Field = {
     type: string,
     name: any,
     default: any,
-    title: string
+    title: string,
+    required: boolean
 };
 
 type FormData = {
@@ -15,7 +16,8 @@ type FormData = {
         default: any,
         type: string,
         value: any,
-        title: string
+        title: string,
+        required: boolean
     }
 };
 
@@ -37,6 +39,7 @@ export default function FormComponent({fields, setData, submit_message = 'submit
                 default: e.default,
                 title: e.title,
                 type: e.type,
+                required: e.required,
                 value: null
             }}))
         })
@@ -57,7 +60,7 @@ export default function FormComponent({fields, setData, submit_message = 'submit
     }
     
     return(
-        <form ref={formRef}>
+        <form ref={formRef} onSubmit={handleSubmit}>
             <div style={{display: "flex", flexDirection: "row", flexWrap: 'wrap', justifyContent: "center", gap: 22, width: "100%", maxWidth: '795px'}} className={s._form_wrp}>
                 <div style={{display: "flex", flexDirection: "row", flexWrap: 'wrap', justifyContent: "center", gap: 22, width: "100%"}} className={s.form}>
                     {
@@ -65,7 +68,7 @@ export default function FormComponent({fields, setData, submit_message = 'submit
                             return (
                                 <div key={key} id={''+e+key} style={{display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start", maxWidth: 350, minWidth: 250}}>
                                     <label className={s.input_label} htmlFor={''+e+'label'+key}>{formData[e].title}</label>
-                                    <input name={e} onChange={handleChange} id={''+e+'label'+key} value={formData[e].value ?? ''} className={s.input_animated} />
+                                    <input name={e} onChange={handleChange} id={''+e+'label'+key} value={formData[e].value ?? ''} className={s.input_animated} required={formData[e].required} />
                                 </div>
                             )
                         })
@@ -73,7 +76,7 @@ export default function FormComponent({fields, setData, submit_message = 'submit
                 </div>
                 
                 <div className={s.controll}>
-                    <button style={{maxWidth: 350, minWidth: 250, height: 32}} onClick={handleSubmit}>{submit_message}</button>
+                    <button style={{maxWidth: 350, minWidth: 250, height: 32}} type="submit">{submit_message}</button>
                     {add_elements}
                 </div>
             </div>
